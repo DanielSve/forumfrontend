@@ -1,0 +1,54 @@
+.forum h3 {
+margin-left:10px;
+}
+
+.thread-preview {
+  cursor: pointer;
+  margin: 20px 0;
+  border: 1px solid rgb(170, 172, 207);
+  border-radius: 4px;
+  padding: 0 15px;
+  background-color: white;
+}
+
+.thread-preview:hover {
+  background-color: rgb(251, 251, 255);
+}
+
+.user2 {
+  font-size: 14px;
+  line-height: 2px;
+  margin-bottom: 18px;
+}
+
+.thread-preview span {
+  color: rgb(31, 31, 197);
+}
+
+.new-thread {
+  border: 1px solid rgb(170, 172, 207);
+  border-radius: 5px;
+  margin: 0 0 20px 0;
+  padding: 5px;
+  background-color: white;
+}
+
+.new-thread form {
+  background-color: white;
+  margin: 0;
+  border: none;
+}
+
+.new-thread label {
+  padding: 5px 0px 2px 0;
+}
+
+.new-thread textarea {
+  font-family: inherit;
+  resize: none;
+  height: 100px;
+  border-radius: 5px;
+  margin: 10px 0;
+  /* padding: 40px 0; */
+}
+

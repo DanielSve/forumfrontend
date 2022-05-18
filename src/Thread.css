@@ -1,0 +1,88 @@
+.thread {
+  background-color: white;
+  margin: 30px 0;
+  padding: 10px 30px 30px 30px;
+  border: 1px solid rgb(21, 31, 139);
+  border: 1px solid rgb(170, 172, 207);
+  border-radius: 5px;
+}
+
+.comment {
+  background-color: white;
+  margin: 20px 0;
+  padding: 10px 30px 10px 30px;
+  border: 1px solid rgb(170, 172, 207);
+  border-radius: 5px;
+}
+
+.user {
+  font-size: 12px;
+  line-height: 2px;
+  /* color: rgb(90, 88, 88); */
+}
+
+.thread .user {
+    margin-top: 27px;
+    margin-bottom: 0
+}
+
+.user span {
+  color: rgb(31, 31, 197)
+}
+
+.new-comment {
+    margin-bottom: 20px;
+}
+
+.new-comment form {
+  border-color: rgb(170, 172, 207);
+  margin: 0;
+  padding: 10px 30px 10px 30px;
+}
+
+.new-comment label {
+  padding: 10px;
+}
+
+.new-comment textarea {
+  font-family: inherit;
+  resize: none;
+  height: 100px;
+  border-radius: 5px;
+  margin: 10px 0;
+  /* padding: 40px 0; */
+}
+
+.like {
+  width:25px;
+  height: 25px;
+  background: url("../public/like.png");
+  background-repeat: no-repeat;
+  background-size: 25px 25px;
+  background-position: center;
+  margin:0 5px 0 0;
+}
+
+.liked {
+  width:25px;
+  height: 25px;
+  background: url("../public/like.png");
+  background-repeat: no-repeat;
+  background-size: 25px 25px;
+  background-position: center;
+  
+  border: 1px solid rgb(162, 162, 223);
+  background-color:rgb(237, 242, 253);
+  margin:0 5px 0 0;
+}
+
+.amount-likes {
+  font-size: 16px;
+  color: rgb(31, 31, 197)
+}
+
+.like-wrapper {
+  display:flex;
+  margin-top:20px;
+  align-items: center;
+}
