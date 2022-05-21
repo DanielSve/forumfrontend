@@ -1,21 +1,13 @@
 import React from 'react';
 import { getThreadsByUserId } from '../services/forumThreadService';
-import '../Profile.css';
+import '../css/Profile.css';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { getUserInfo } from '../services/userService';
-
 
 const Profile = ({ user }) => {
   let navigate = useNavigate();
   const [userInfo, setUserInfo] = React.useState();
   const [usersThreads, setUsersThreads] = React.useState('');
-  console.log(user);
-  console.log(userInfo);
-
-  
-  
-
-  //   console.log(usersThreads[0].title);
 
   React.useEffect(() => {
     const setThreads = async () => {
@@ -34,20 +26,20 @@ const Profile = ({ user }) => {
   }, []);
 
   const showThread = async (e) => {
-      console.log(e.target.id);
+    console.log(e.target.id);
     navigate(`/showthread/${e.target.id}`);
   };
 
   return (
     <div className='profile'>
-        <div className="profile-card">
-        {userInfo && 
-        <div>
-            <p>{userInfo.userName}</p> 
-            <p>{userInfo.email}</p>
-            </div>}
-          
-        </div>
+      <div className='profile-card'>
+        {userInfo && (
+          <div>
+            <p><strong>Username:</strong> {userInfo.userName}</p>
+            <p><strong>Email:</strong> {userInfo.email}</p>
+          </div>
+        )}
+      </div>
       {usersThreads && <h2>Your threads</h2>}
       {usersThreads &&
         usersThreads.map((t, index) => (
@@ -57,7 +49,8 @@ const Profile = ({ user }) => {
             className='thread-preview'
             onClick={showThread}
           >
-            <p id = {t.id}>{t.title}</p>
+            <h3 id={t.id}>{t.title}</h3>
+            <p id={t.id}>{t.date.substring(0,10)}</p>
           </div>
         ))}
     </div>

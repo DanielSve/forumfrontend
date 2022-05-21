@@ -1,7 +1,7 @@
 import React from 'react';
-import '../Home.css';
-import "../App.css"
-import "../Main.css"
+import '../css/Home.css';
+import "../css/App.css"
+import "../css/Main.css"
 import { loginUser } from '../services/userService';
 import { useNavigate } from 'react-router-dom';
 import { messageContext } from '../services/msgContext';

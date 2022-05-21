@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../Thread.css';
+import '../css/Thread.css';
 import { useParams } from 'react-router-dom';
 import {
   getThreadById,
@@ -17,6 +17,7 @@ const ShowThread = ({ user }) => {
     threadId: id,
     userId: user ? user.id : '',
     content: '',
+    date: ""
   });
 
   const updateThread = async () => {
@@ -48,7 +49,7 @@ const ShowThread = ({ user }) => {
   }, [currentThread]);
 
   const handleChange = (e) => {
-    setCommentData({ ...commentData, content: e.target.value });
+    setCommentData({ ...commentData, content: e.target.value, date: new Date().toISOString() });
   };
 
   const pressLike = async (e) => {
@@ -76,14 +77,27 @@ const ShowThread = ({ user }) => {
     return comment.likeComments.filter((l) => l.user.id === user.id).length > 0;
   };
 
+  const formatDate = (d)=> {
+    let diff = Math.trunc((new Date() - Date.parse(d)) / (1000 * 60 * 60 * 24))
+    if(diff<1) {
+      return "today"
+    } else if (diff<2) {
+      return "yesterday"
+    } else if(diff<6) {
+      return `${diff} days ago`
+    } else  {
+    return d.substring(0,10)
+    }
+  }
+
   return (
     <div>
       {currentThread && (
         <div className='thread'>
           <h3>{currentThread.title}</h3>
-          <p>{currentThread.content}</p>
+          <p className="content">{currentThread.content}</p>
           <p className='user'>
-            Posted by <span>{currentThread.user.username}</span>
+            Posted by <span>{currentThread.user.username}&nbsp;</span> {formatDate(currentThread.date)}
           </p>
           <div className='like-wrapper'>
             <button
@@ -102,9 +116,9 @@ const ShowThread = ({ user }) => {
         currentThread.comments.map((c, index) => (
           <div className='comment' key={index}>
             <p className='user'>
-              <span>{c.user.username}</span>
+              <span>{c.user.username}&nbsp;</span>{"  "}<span> </span>{formatDate(c.date)}
             </p>
-            <p>{c.content}</p>
+            <p className='content'>{c.content}</p>
             <button
               id={index}
               className={likedComment(c) ? 'liked' : 'like'}

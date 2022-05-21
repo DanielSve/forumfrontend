@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../Forum.css';
+import '../css/Forum.css';
 import { getAllForumThreads, addThread } from '../services/forumThreadService';
 
 const Forum = ({ user }) => {
@@ -11,18 +11,19 @@ const Forum = ({ user }) => {
     title: '',
     content: '',
     userId: user.id ? user.id : '',
+    date: '',
   });
-
+  console.log(newThread);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const threadRes = await addThread(newThread, user.token);
     const threadsRes = await getAllForumThreads(user.token);
     setThreads(threadsRes);
-    setNewThread({...newThread, title: "", content: ""})
+    setNewThread({ ...newThread, title: '', content: '' });
   };
 
   const handleChange = (e) => {
-    setNewThread({ ...newThread, [e.target.name]: e.target.value });
+    setNewThread({ ...newThread, [e.target.name]: e.target.value, date:new Date().toISOString() });
   };
 
   React.useEffect(() => {
@@ -36,7 +37,7 @@ const Forum = ({ user }) => {
   const showThread = async (e) => {
     navigate(`/showthread/${e.target.id}`);
   };
-  
+
   return (
     <div>
       <br></br>
@@ -52,13 +53,16 @@ const Forum = ({ user }) => {
             <h3 id={t.id} onClick={showThread}>
               {t.title}
             </h3>
-            <p className="user2" id={t.id} onClick={showThread}>
-              By <span>{t.user.username}</span>
+            <p className='user2' id={t.id} onClick={showThread}>
+              By <span>{t.user.username}</span> {t.date.substring(0,10)}
             </p>
           </div>
         ))}
-        {threads && <h3> {user ? "Create new thread" : "Login to create new thread"}</h3>}
-      {user && (<div className='new-thread'>
+      {threads && (
+        <h3> {user ? 'Create new thread' : 'Login to create new thread'}</h3>
+      )}
+      {user && (
+        <div className='new-thread'>
           <form onSubmit={handleSubmit}>
             <label>Title</label>
             <input
@@ -75,8 +79,8 @@ const Forum = ({ user }) => {
             ></textarea>
             <button>Submit thread</button>
           </form>
-        
-      </div>)}
+        </div>
+      )}
     </div>
   );
 };
