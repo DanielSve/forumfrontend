@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../css/Forum.css';
 import { getAllForumThreads, addThread } from '../services/forumThreadService';
+import { formatDate } from "./ShowThread.js"
 
 const Forum = ({ user }) => {
   const [threads, setThreads] = React.useState();
@@ -54,7 +55,7 @@ const Forum = ({ user }) => {
               {t.title}
             </h3>
             <p className='user2' id={t.id} onClick={showThread}>
-              By <span>{t.user.username}</span> {t.date.substring(0,10)}
+              By <span>{t.user.username}</span> {formatDate(t.date)}
             </p>
           </div>
         ))}

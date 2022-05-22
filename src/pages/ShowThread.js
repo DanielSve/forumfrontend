@@ -8,6 +8,19 @@ import {
   addLikeComment,
 } from '../services/forumThreadService';
 
+export const formatDate = (d)=> {
+  let diff = Math.trunc((new Date() - Date.parse(d)) / (1000 * 60 * 60 * 24))
+  if(diff<1) {
+    return "today"
+  } else if (diff<2) {
+    return "yesterday"
+  } else if(diff<6) {
+    return `${diff} days ago`
+  } else  {
+  return d.substring(0,10)
+  }
+}
+
 const ShowThread = ({ user }) => {
   let { id } = useParams();
   const [like, setLike] = React.useState(false);
@@ -77,18 +90,7 @@ const ShowThread = ({ user }) => {
     return comment.likeComments.filter((l) => l.user.id === user.id).length > 0;
   };
 
-  const formatDate = (d)=> {
-    let diff = Math.trunc((new Date() - Date.parse(d)) / (1000 * 60 * 60 * 24))
-    if(diff<1) {
-      return "today"
-    } else if (diff<2) {
-      return "yesterday"
-    } else if(diff<6) {
-      return `${diff} days ago`
-    } else  {
-    return d.substring(0,10)
-    }
-  }
+  
 
   return (
     <div>

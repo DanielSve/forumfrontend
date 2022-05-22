@@ -3,6 +3,7 @@ import { getThreadsByUserId } from '../services/forumThreadService';
 import '../css/Profile.css';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { getUserInfo } from '../services/userService';
+import { formatDate } from './ShowThread';
 
 const Profile = ({ user }) => {
   let navigate = useNavigate();
@@ -50,7 +51,7 @@ const Profile = ({ user }) => {
             onClick={showThread}
           >
             <h3 id={t.id}>{t.title}</h3>
-            <p id={t.id}>{t.date.substring(0,10)}</p>
+            <p id={t.id}>{formatDate(t.date)}</p>
           </div>
         ))}
     </div>
